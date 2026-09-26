@@ -1,0 +1,1594 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #f5f5f5;
+  background: #09090b;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: #09090b;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.09), transparent 30%),
+    radial-gradient(circle at 85% 25%, rgba(168, 85, 247, 0.07), transparent 28%),
+    #09090b;
+  color: #f5f5f5;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(129, 140, 248, 0.9);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(129, 140, 248, 0.3);
+  color: #fff;
+}
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.talkivo-app {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.015),
+      transparent 25%
+    ),
+    #09090b;
+}
+
+.talkivo-app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.talkivo-glow {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 999px;
+  filter: blur(100px);
+  pointer-events: none;
+  opacity: 0.08;
+}
+
+.talkivo-glow-one {
+  top: -280px;
+  left: -180px;
+  background: #6366f1;
+}
+
+.talkivo-glow-two {
+  top: 320px;
+  right: -300px;
+  background: #a855f7;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.talkivo-header {
+  position: relative;
+  z-index: 2;
+  width: min(1320px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 28px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.talkivo-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.talkivo-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #818cf8, #6366f1);
+  box-shadow:
+    0 10px 30px rgba(99, 102, 241, 0.22),
+    inset 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.talkivo-logo span {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: white;
+}
+
+.talkivo-brand-name {
+  font-size: 17px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.talkivo-brand-subtitle {
+  margin-top: 1px;
+  color: #71717a;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.talkivo-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #a1a1aa;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.talkivo-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.7);
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.talkivo-main {
+  position: relative;
+  z-index: 1;
+  width: min(1160px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 78px 0 50px;
+}
+
+.talkivo-hero {
+  max-width: 760px;
+  margin-bottom: 48px;
+}
+
+.talkivo-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  color: #818cf8;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.18em;
+}
+
+.talkivo-eyebrow span {
+  font-size: 14px;
+}
+
+.talkivo-hero h1 {
+  margin: 0;
+  color: #fafafa;
+  font-size: clamp(44px, 6vw, 76px);
+  font-weight: 760;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.talkivo-hero h1 span {
+  color: #8b8cf7;
+}
+
+.talkivo-hero p {
+  max-width: 560px;
+  margin: 24px 0 0;
+  color: #a1a1aa;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   WORKSPACE
+   ========================================================= */
+
+.talkivo-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(330px, 0.75fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.talkivo-editor-card,
+.talkivo-control-card,
+.talkivo-output-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018)
+    );
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.2),
+    inset 0 1px rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(18px);
+}
+
+.talkivo-editor-card {
+  min-height: 480px;
+}
+
+.talkivo-control-card {
+  min-height: 480px;
+}
+
+.talkivo-output-card {
+  grid-column: 1 / -1;
+  min-height: 210px;
+}
+
+.talkivo-output-card.has-audio {
+  border-color: rgba(129, 140, 248, 0.18);
+}
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.talkivo-card-header {
+  min-height: 78px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.talkivo-card-label {
+  display: block;
+  color: #f4f4f5;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.talkivo-card-hint {
+  display: block;
+  margin-top: 5px;
+  color: #71717a;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.talkivo-step {
+  display: grid;
+  place-items: center;
+  min-width: 30px;
+  height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #71717a;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+}
+
+/* =========================================================
+   TEXT EDITOR
+   ========================================================= */
+
+.talkivo-textarea-wrap {
+  padding: 20px;
+}
+
+.talkivo-textarea-wrap textarea {
+  width: 100%;
+  min-height: 300px;
+  resize: vertical;
+  border: 0 !important;
+  outline: none !important;
+  background: transparent !important;
+  color: #f4f4f5 !important;
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+  box-shadow: none !important;
+}
+
+.talkivo-textarea-wrap textarea::placeholder {
+  color: #52525b !important;
+}
+
+.talkivo-editor-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 56px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.talkivo-editor-tip,
+.talkivo-ready-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #71717a;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.talkivo-editor-tip span:first-child {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #a1a1aa;
+  font-size: 9px;
+}
+
+.talkivo-ready-indicator span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #52525b;
+}
+
+.talkivo-ready-indicator span.active {
+  background: #34d399;
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.65);
+}
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.talkivo-selectors {
+  padding: 24px 22px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.talkivo-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #a1a1aa;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.talkivo-field select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 12px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.035) !important;
+  color: #f4f4f5 !important;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.talkivo-field select:hover {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.talkivo-field select:focus {
+  border-color: rgba(129, 140, 248, 0.55) !important;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.08);
+}
+
+.talkivo-field select option {
+  background: #18181b;
+  color: #f4f4f5;
+}
+
+.talkivo-generate {
+  padding: 18px 22px 22px;
+}
+
+.talkivo-generate button {
+  width: 100%;
+  min-height: 52px;
+  border: 0;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #818cf8, #6366f1);
+  color: white;
+  font-size: 13px;
+  font-weight: 750;
+  box-shadow:
+    0 14px 30px rgba(99, 102, 241, 0.2),
+    inset 0 1px rgba(255, 255, 255, 0.25);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.talkivo-generate button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 18px 36px rgba(99, 102, 241, 0.28),
+    inset 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.talkivo-generate button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.talkivo-generate button:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.talkivo-error-wrapper {
+  padding: 16px 22px 0;
+}
+
+/* =========================================================
+   OUTPUT
+   ========================================================= */
+
+.talkivo-empty-output,
+.talkivo-generating {
+  min-height: 130px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.talkivo-empty-output strong,
+.talkivo-generating strong {
+  margin-top: 14px;
+  color: #d4d4d8;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.talkivo-empty-output p,
+.talkivo-generating p {
+  margin: 5px 0 0;
+  color: #52525b;
+  font-size: 11px;
+}
+
+.talkivo-wave-icon {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.talkivo-wave-icon span {
+  width: 3px;
+  border-radius: 99px;
+  background: #6366f1;
+  opacity: 0.65;
+}
+
+.talkivo-wave-icon span:nth-child(1) {
+  height: 10px;
+}
+
+.talkivo-wave-icon span:nth-child(2) {
+  height: 19px;
+}
+
+.talkivo-wave-icon span:nth-child(3) {
+  height: 28px;
+}
+
+.talkivo-wave-icon span:nth-child(4) {
+  height: 16px;
+}
+
+.talkivo-wave-icon span:nth-child(5) {
+  height: 31px;
+}
+
+.talkivo-wave-icon span:nth-child(6) {
+  height: 20px;
+}
+
+.talkivo-wave-icon span:nth-child(7) {
+  height: 11px;
+}
+
+.talkivo-generating-orb {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.08);
+  animation: talkivo-pulse 1.5s ease-in-out infinite;
+}
+
+.talkivo-generating-orb span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #818cf8;
+  box-shadow: 0 0 20px rgba(129, 140, 248, 0.8);
+}
+
+.talkivo-audio-content {
+  padding: 18px 22px 22px;
+}
+
+.talkivo-audio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 12px;
+  color: #818cf8;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.talkivo-audio-badge span {
+  font-size: 8px;
+}
+
+.talkivo-audio-content audio {
+  width: 100%;
+}
+
+.talkivo-download {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.talkivo-footer {
+  position: relative;
+  z-index: 1;
+  width: min(1160px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 0 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #3f3f46;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.talkivo-footer-separator {
+  color: #27272a;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes talkivo-pulse {
+  0%,
+  100% {
+    transform: scale(0.94);
+    opacity: 0.75;
+  }
+
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .talkivo-main {
+    padding-top: 58px;
+  }
+
+  .talkivo-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .talkivo-editor-card,
+  .talkivo-control-card {
+    min-height: auto;
+  }
+
+  .talkivo-output-card {
+    grid-column: auto;
+  }
+
+  .talkivo-textarea-wrap textarea {
+    min-height: 260px;
+  }
+
+  .talkivo-editor-footer {
+    position: relative;
+  }
+}
+
+@media (max-width: 640px) {
+  .talkivo-header,
+  .talkivo-main,
+  .talkivo-footer {
+    width: min(100% - 28px, 1160px);
+  }
+
+  .talkivo-header {
+    padding: 20px 0;
+  }
+
+  .talkivo-status {
+    padding: 7px 9px;
+    font-size: 9px;
+  }
+
+  .talkivo-main {
+    padding-top: 44px;
+    padding-bottom: 35px;
+  }
+
+  .talkivo-hero {
+    margin-bottom: 34px;
+  }
+
+  .talkivo-hero h1 {
+    font-size: clamp(42px, 14vw, 62px);
+  }
+
+  .talkivo-hero p {
+    margin-top: 18px;
+    font-size: 14px;
+  }
+
+  .talkivo-editor-card,
+  .talkivo-control-card,
+  .talkivo-output-card {
+    border-radius: 18px;
+  }
+
+  .talkivo-card-header {
+    padding: 17px;
+  }
+
+  .talkivo-textarea-wrap {
+    padding: 14px;
+  }
+
+  .talkivo-textarea-wrap textarea {
+    min-height: 240px;
+    font-size: 16px !important;
+  }
+
+  .talkivo-editor-footer {
+    padding: 12px 15px;
+  }
+
+  .talkivo-editor-tip {
+    display: none;
+  }
+
+  .talkivo-selectors {
+    padding: 20px 17px 5px;
+  }
+
+  .talkivo-generate {
+    padding: 17px;
+  }
+
+  .talkivo-audio-content {
+    padding: 16px 17px 18px;
+  }
+
+  .talkivo-footer {
+    padding-bottom: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* =========================================================
+   PREMIUM AUDIO PLAYER
+   ========================================================= */
+
+.talkivo-player {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018)
+    );
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.18),
+    inset 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.talkivo-player::before {
+  content: "";
+  position: absolute;
+  top: -90px;
+  right: -60px;
+  width: 220px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.08);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.talkivo-player-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.talkivo-player-info {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.talkivo-player-icon {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(129, 140, 248, 0.2);
+  border-radius: 10px;
+  background: rgba(99, 102, 241, 0.09);
+  color: #818cf8;
+}
+
+.talkivo-player-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.talkivo-player-title {
+  display: block;
+  color: #e4e4e7;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.talkivo-player-subtitle {
+  display: block;
+  margin-top: 3px;
+  color: #52525b;
+  font-size: 9px;
+  font-weight: 550;
+}
+
+.talkivo-player-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #71717a;
+  font-size: 9px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.talkivo-player-status span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #52525b;
+}
+
+.talkivo-player-status span.playing {
+  background: #818cf8;
+  box-shadow: 0 0 10px rgba(129, 140, 248, 0.8);
+  animation: talkivo-audio-dot 1.2s ease-in-out infinite;
+}
+
+.talkivo-waveform-area {
+  position: relative;
+  z-index: 1;
+  margin: 20px 0 16px;
+  padding: 5px 2px;
+}
+
+.talkivo-waveform {
+  position: relative;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.talkivo-wave-bar {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-width: 2px;
+  max-width: 7px;
+  margin: 0 auto;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.09);
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.talkivo-wave-bar.played {
+  background: rgba(129, 140, 248, 0.62);
+}
+
+.talkivo-wave-bar.active {
+  animation: talkivo-wave 900ms ease-in-out infinite alternate;
+}
+
+.talkivo-wave-bar:hover {
+  background: #a5b4fc;
+  transform: scaleY(1.15);
+}
+
+.talkivo-wave-progress {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+.talkivo-player-controls {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.talkivo-play-button {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #818cf8, #6366f1);
+  color: white;
+  box-shadow:
+    0 9px 24px rgba(99, 102, 241, 0.22),
+    inset 0 1px rgba(255, 255, 255, 0.28);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.talkivo-play-button:hover {
+  transform: translateY(-1px) scale(1.02);
+  filter: brightness(1.08);
+  box-shadow:
+    0 12px 28px rgba(99, 102, 241, 0.3),
+    inset 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.talkivo-play-button:active {
+  transform: scale(0.97);
+}
+
+.talkivo-play-button svg {
+  width: 17px;
+  height: 17px;
+}
+
+.talkivo-time {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 72px;
+  color: #a1a1aa;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.talkivo-time-divider {
+  color: #3f3f46;
+}
+
+.talkivo-volume {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-left: auto;
+}
+
+.talkivo-volume svg {
+  width: 16px;
+  height: 16px;
+  color: #71717a;
+}
+
+.talkivo-volume input {
+  width: 88px;
+  height: 4px;
+  margin: 0;
+  appearance: none;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  background:
+    linear-gradient(
+      to right,
+      #818cf8 0%,
+      #818cf8 var(--volume-progress),
+      rgba(255, 255, 255, 0.1) var(--volume-progress),
+      rgba(255, 255, 255, 0.1) 100%
+    );
+}
+
+.talkivo-volume input::-webkit-slider-thumb {
+  width: 11px;
+  height: 11px;
+  appearance: none;
+  border: 2px solid #09090b;
+  border-radius: 50%;
+  background: #a5b4fc;
+  box-shadow: 0 0 0 1px rgba(165, 180, 252, 0.25);
+}
+
+.talkivo-volume input::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border: 2px solid #09090b;
+  border-radius: 50%;
+  background: #a5b4fc;
+}
+
+/* =========================================================
+   PREMIUM DOWNLOAD BUTTON
+   ========================================================= */
+
+.talkivo-download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 142px;
+  padding: 9px 13px 9px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  color: #e4e4e7;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.talkivo-download-button:hover:not(.disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(129, 140, 248, 0.3);
+  background: rgba(129, 140, 248, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
+}
+
+.talkivo-download-button:active:not(.disabled) {
+  transform: translateY(0);
+}
+
+.talkivo-download-icon {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: rgba(129, 140, 248, 0.1);
+  color: #a5b4fc;
+}
+
+.talkivo-download-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.talkivo-download-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.talkivo-download-text strong {
+  color: #d4d4d8;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.talkivo-download-text small {
+  color: #52525b;
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.talkivo-download-button.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+/* =========================================================
+   AUDIO ANIMATION
+   ========================================================= */
+
+@keyframes talkivo-wave {
+  from {
+    transform: scaleY(0.72);
+  }
+
+  to {
+    transform: scaleY(1.08);
+  }
+}
+
+@keyframes talkivo-audio-dot {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   AUDIO PLAYER MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .talkivo-player {
+    padding: 15px;
+  }
+
+  .talkivo-player-subtitle {
+    display: none;
+  }
+
+  .talkivo-player-status {
+    font-size: 8px;
+  }
+
+  .talkivo-waveform {
+    height: 50px;
+    gap: 2px;
+  }
+
+  .talkivo-wave-bar {
+    max-width: 5px;
+  }
+
+  .talkivo-player-controls {
+    gap: 9px;
+  }
+
+  .talkivo-play-button {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .talkivo-volume input {
+    width: 65px;
+  }
+
+  .talkivo-download-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+/* =========================================================
+   PREMIUM TEXT EDITOR
+   ========================================================= */
+
+.talkivo-text-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 300px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.018);
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.talkivo-text-editor:focus-within {
+  border-color: rgba(129, 140, 248, 0.3);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.talkivo-text-editor-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 42px;
+  padding: 0 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.talkivo-text-editor-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.talkivo-text-editor-label label {
+  color: #a1a1aa;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.talkivo-text-editor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #52525b;
+}
+
+.talkivo-text-editor:focus-within .talkivo-text-editor-dot {
+  background: #818cf8;
+  box-shadow: 0 0 9px rgba(129, 140, 248, 0.65);
+}
+
+.talkivo-text-editor-limit {
+  color: #52525b;
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.talkivo-textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 230px;
+  padding: 22px 20px;
+  resize: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #e4e4e7;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 450;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+  caret-color: #818cf8;
+}
+
+.talkivo-textarea::placeholder {
+  color: #3f3f46;
+  opacity: 1;
+}
+
+.talkivo-textarea:focus::placeholder {
+  color: #45454d;
+}
+
+.talkivo-textarea::-webkit-scrollbar {
+  width: 5px;
+}
+
+.talkivo-textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.talkivo-textarea::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.talkivo-textarea-error {
+  color: #fbbf24;
+}
+
+.talkivo-text-editor-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 42px;
+  padding: 0 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.talkivo-text-stats {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #52525b;
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.talkivo-text-stats strong {
+  color: #71717a;
+  font-weight: 700;
+}
+
+.talkivo-stat-divider {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #3f3f46;
+}
+
+.talkivo-count-error {
+  color: #fbbf24;
+}
+
+.talkivo-count-error strong {
+  color: #fbbf24;
+}
+
+.talkivo-text-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #3f3f46;
+  font-size: 8px;
+  font-weight: 650;
+}
+
+.talkivo-text-status span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #3f3f46;
+}
+
+.talkivo-text-status.active {
+  color: #71717a;
+}
+
+.talkivo-text-status.active span {
+  background: #818cf8;
+  box-shadow: 0 0 7px rgba(129, 140, 248, 0.55);
+}
+
+.talkivo-text-status.error {
+  color: #fbbf24;
+}
+
+.talkivo-text-status.error span {
+  background: #fbbf24;
+  box-shadow: 0 0 7px rgba(251, 191, 36, 0.5);
+}
+
+@media (max-width: 640px) {
+  .talkivo-text-editor {
+    min-height: 280px;
+  }
+
+  .talkivo-textarea {
+    min-height: 210px;
+    padding: 18px 15px;
+    font-size: 15px;
+  }
+
+  .talkivo-text-editor-limit {
+    display: none;
+  }
+
+  .talkivo-text-status {
+    display: none;
+  }
+
+  .talkivo-text-editor-bottom {
+    min-height: 38px;
+  }
+}
+ /* =========================================================
+    PREMIUM LANGUAGE / VOICE SELECTORS
+    ========================================================= */
+
+.talkivo-select-field {
+  width: 100%;
+}
+
+.talkivo-select-field label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+  color: #71717a;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.talkivo-field-icon {
+  display: inline-flex;
+  color: #52525b;
+}
+
+.talkivo-field-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.talkivo-select-field:focus-within .talkivo-field-icon {
+  color: #818cf8;
+}
+
+.talkivo-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.talkivo-premium-select {
+  width: 100%;
+  height: 48px;
+  appearance: none;
+  padding: 0 40px 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 11px;
+  outline: none;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018)
+    );
+  color: #d4d4d8;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.talkivo-premium-select:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.talkivo-premium-select:focus {
+  border-color: rgba(129, 140, 248, 0.4);
+  background: rgba(129, 140, 248, 0.035);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.06);
+}
+
+.talkivo-premium-select:disabled {
+  cursor: not-allowed;
+  color: #3f3f46;
+  border-color: rgba(255, 255, 255, 0.045);
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.talkivo-premium-select option {
+  background: #18181b;
+  color: #e4e4e7;
+  font-family: inherit;
+}
+
+.talkivo-premium-select option:disabled {
+  color: #52525b;
+}
+
+.talkivo-select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 13px;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #52525b;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.talkivo-select-arrow svg {
+  width: 14px;
+  height: 14px;
+}
+
+.talkivo-select-wrapper:focus-within .talkivo-select-arrow {
+  color: #818cf8;
+  transform: translateY(-50%) translateY(1px);
+}
+
+.talkivo-premium-select:disabled + .talkivo-select-arrow {
+  color: #3f3f46;
+}
+
+/* =========================================================
+   SELECTOR RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .talkivo-premium-select {
+    height: 45px;
+    font-size: 10px;
+  }
+
+  .talkivo-select-field label {
+    font-size: 8px;
+  }
+}
+.talkivo-text-editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.talkivo-clear-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #71717a;
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.talkivo-clear-button svg {
+  width: 12px;
+  height: 12px;
+}
+
+.talkivo-clear-button:hover {
+  border-color: rgba(248, 113, 113, 0.25);
+  background: rgba(248, 113, 113, 0.06);
+  color: #fca5a5;
+}
+
+.talkivo-clear-button:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 640px) {
+  .talkivo-text-editor-actions {
+    gap: 6px;
+  }
+
+  .talkivo-clear-button {
+    padding: 4px 7px;
+    font-size: 8px;
+  }
+
+  .talkivo-clear-button svg {
+    width: 11px;
+    height: 11px;
+  }
+}
