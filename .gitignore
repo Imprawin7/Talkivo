@@ -1,15 +1,26 @@
-# Backend
-backend/target/
-backend/.env
-backend/generated-audio/
-
-# Frontend
+# Node dependencies
 frontend/node_modules/
 frontend/dist/
-frontend/.env
 
-# IDE / OS
+# Java build output
+backend/target/
+
+# Generated audio
+backend/generated-audio/
+
+# Environment files
+backend/.env
+backend/.env.local
+frontend/.env
+frontend/.env.local
+
+# IDE files
 .idea/
 .vscode/
-*.iml
+
+# Logs
+*.log
+
+# OS
 .DS_Store
+Thumbs.db

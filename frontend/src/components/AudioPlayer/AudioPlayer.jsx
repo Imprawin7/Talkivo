@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
+import { AUDIO_BASE_URL } from '../../utils/constants'
 
 const BAR_COUNT = 32
-const AUDIO_BASE_URL = 'http://localhost:8080'
 
 export default function AudioPlayer({ src }) {
   const audioRef = useRef(null)
@@ -13,7 +13,7 @@ export default function AudioPlayer({ src }) {
   const audioSrc = src
     ? src.startsWith('http')
       ? src
-      : `${AUDIO_BASE_URL}${src}`
+      : ${AUDIO_BASE_URL}
     : null
 
   useEffect(() => {
@@ -171,11 +171,9 @@ export default function AudioPlayer({ src }) {
             return (
               <span
                 key={i}
-                className={`talkivo-wave-bar ${
-                  played ? 'played' : ''
-                } ${isPlaying && played ? 'active' : ''}`}
+                className={	alkivo-wave-bar  }
                 style={{
-                  height: `${heights[i]}%`,
+                  height: ${heights[i]}%,
                 }}
               />
             )
@@ -183,7 +181,7 @@ export default function AudioPlayer({ src }) {
 
           <div
             className="talkivo-wave-progress"
-            style={{ width: `${progress * 100}%` }}
+            style={{ width: ${progress * 100}% }}
           />
         </div>
       </div>
@@ -242,7 +240,7 @@ export default function AudioPlayer({ src }) {
             onChange={handleVolume}
             aria-label="Volume"
             style={{
-              '--volume-progress': `${volume * 100}%`,
+              '--volume-progress': ${volume * 100}%,
             }}
           />
         </div>
@@ -259,7 +257,5 @@ function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60)
   const remainingSeconds = Math.floor(seconds % 60)
 
-  return `${minutes}:${remainingSeconds
-    .toString()
-    .padStart(2, '0')}`
+  return ${minutes}:
 }
