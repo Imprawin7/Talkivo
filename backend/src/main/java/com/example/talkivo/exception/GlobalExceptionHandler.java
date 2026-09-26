@@ -43,9 +43,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleProviderError(
             TtsProviderException ex) {
 
+        ex.printStackTrace();
+
         return build(
                 HttpStatus.SERVICE_UNAVAILABLE,
-                "Unable to generate speech. Please try again."
+                ex.getMessage()
         );
     }
 

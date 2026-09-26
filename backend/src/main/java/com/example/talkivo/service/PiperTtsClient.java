@@ -1,6 +1,7 @@
 package com.example.talkivo.service;
 
 import com.example.talkivo.exception.TtsProviderException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
@@ -15,11 +16,11 @@ import java.util.UUID;
 @Component
 public class PiperTtsClient {
 
-    private static final String PYTHON_PATH =
-            "C:\\Users\\yaada\\AppData\\Local\\Programs\\Python\\Python312\\python.exe";
+    @Value("${piper.python-path:python}")
+    private String pythonPath;
 
-    private static final String MODELS_DIR =
-            "D:\\Coding\\Talkivo\\piper\\models";
+    @Value("${piper.models-dir:./piper/models}")
+    private String modelsDir;
 
     public byte[] synthesize(
             String text,
@@ -30,13 +31,21 @@ public class PiperTtsClient {
         Path outputFile = null;
 
         try {
-
             String model = mapVoice(languageCode, voiceName);
 
-            Path modelFile = Paths.get(
-                    MODELS_DIR,
-                    model + ".onnx"
-            );
+            Path modelsPath = Paths.get(modelsDir)
+                    .toAbsolutePath()
+                    .normalize();
+
+            Path modelFile = modelsPath
+                    .resolve(model + ".onnx")
+                    .normalize();
+
+            if (!modelFile.startsWith(modelsPath)) {
+                throw new TtsProviderException(
+                        "Invalid Piper model path"
+                );
+            }
 
             if (!Files.exists(modelFile)) {
                 throw new TtsProviderException(
@@ -63,7 +72,7 @@ public class PiperTtsClient {
             );
 
             ProcessBuilder processBuilder = new ProcessBuilder(
-                    PYTHON_PATH,
+                    pythonPath,
                     "-m",
                     "piper",
                     "-m",
@@ -72,10 +81,6 @@ public class PiperTtsClient {
                     inputFile.toString(),
                     "-f",
                     outputFile.toString()
-            );
-
-            processBuilder.directory(
-                    Paths.get(MODELS_DIR).toFile()
             );
 
             processBuilder.redirectErrorStream(true);
@@ -87,7 +92,6 @@ public class PiperTtsClient {
 
             try (InputStream inputStream =
                          process.getInputStream()) {
-
                 inputStream.transferTo(processOutput);
             }
 
@@ -120,18 +124,15 @@ public class PiperTtsClient {
             return audioBytes;
 
         } catch (TtsProviderException e) {
-
             throw e;
 
         } catch (IOException e) {
-
             throw new TtsProviderException(
                     "Failed to execute Piper TTS",
                     e
             );
 
         } catch (InterruptedException e) {
-
             Thread.currentThread().interrupt();
 
             throw new TtsProviderException(
@@ -140,7 +141,6 @@ public class PiperTtsClient {
             );
 
         } finally {
-
             try {
                 if (inputFile != null) {
                     Files.deleteIfExists(inputFile);
