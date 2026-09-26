@@ -32,4 +32,6 @@ ENV PIPER_MODELS_DIR=/app/piper/models
 
 EXPOSE 10000
 
+ENV JAVA_TOOL_OPTIONS="-Xms64m -Xmx192m"
+
 CMD ["java", "-jar", "/app/talkivo.jar"]
