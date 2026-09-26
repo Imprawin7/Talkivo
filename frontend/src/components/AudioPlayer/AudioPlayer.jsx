@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react'
 import { AUDIO_BASE_URL } from '../../utils/constants'
 
@@ -5,6 +6,7 @@ const BAR_COUNT = 32
 
 export default function AudioPlayer({ src }) {
   const audioRef = useRef(null)
+
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
@@ -13,7 +15,7 @@ export default function AudioPlayer({ src }) {
   const audioSrc = src
     ? src.startsWith('http')
       ? src
-      : ${AUDIO_BASE_URL}
+      : `${AUDIO_BASE_URL}${src}`
     : null
 
   useEffect(() => {
@@ -30,6 +32,7 @@ export default function AudioPlayer({ src }) {
 
   const togglePlay = async () => {
     const audio = audioRef.current
+
     if (!audio) return
 
     try {
@@ -48,6 +51,7 @@ export default function AudioPlayer({ src }) {
 
   const handleTimeUpdate = () => {
     const audio = audioRef.current
+
     if (!audio || !audio.duration) return
 
     setProgress(audio.currentTime / audio.duration)
@@ -81,6 +85,13 @@ export default function AudioPlayer({ src }) {
   if (!src) {
     return null
   }
+
+  const heights = [
+    28, 44, 65, 38, 78, 52, 88, 48,
+    70, 35, 60, 82, 46, 72, 92, 55,
+    76, 42, 68, 86, 50, 74, 40, 62,
+    84, 46, 72, 58, 88, 43, 67, 35,
+  ]
 
   return (
     <div className="talkivo-player">
@@ -118,7 +129,10 @@ export default function AudioPlayer({ src }) {
           </div>
 
           <div>
-            <span className="talkivo-player-title">Voice preview</span>
+            <span className="talkivo-player-title">
+              Voice preview
+            </span>
+
             <span className="talkivo-player-subtitle">
               Talkivo generated audio
             </span>
@@ -161,19 +175,13 @@ export default function AudioPlayer({ src }) {
         >
           {Array.from({ length: BAR_COUNT }).map((_, i) => {
             const played = i / BAR_COUNT < progress
-            const heights = [
-              28, 44, 65, 38, 78, 52, 88, 48,
-              70, 35, 60, 82, 46, 72, 92, 55,
-              76, 42, 68, 86, 50, 74, 40, 62,
-              84, 46, 72, 58, 88, 43, 67, 35,
-            ]
 
             return (
               <span
                 key={i}
-                className={	alkivo-wave-bar  }
+                className={`talkivo-wave-bar ${played ? 'played' : ''}`}
                 style={{
-                  height: ${heights[i]}%,
+                  height: `${heights[i]}%`,
                 }}
               />
             )
@@ -181,7 +189,9 @@ export default function AudioPlayer({ src }) {
 
           <div
             className="talkivo-wave-progress"
-            style={{ width: ${progress * 100}% }}
+            style={{
+              width: `${progress * 100}%`,
+            }}
           />
         </div>
       </div>
@@ -199,8 +209,20 @@ export default function AudioPlayer({ src }) {
               fill="currentColor"
               aria-hidden="true"
             >
-              <rect x="7" y="5" width="3.5" height="14" rx="1" />
-              <rect x="13.5" y="5" width="3.5" height="14" rx="1" />
+              <rect
+                x="7"
+                y="5"
+                width="3.5"
+                height="14"
+                rx="1"
+              />
+              <rect
+                x="13.5"
+                y="5"
+                width="3.5"
+                height="14"
+                rx="1"
+              />
             </svg>
           ) : (
             <svg
@@ -240,7 +262,7 @@ export default function AudioPlayer({ src }) {
             onChange={handleVolume}
             aria-label="Volume"
             style={{
-              '--volume-progress': ${volume * 100}%,
+              '--volume-progress': `${volume * 100}%`,
             }}
           />
         </div>
@@ -257,5 +279,5 @@ function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60)
   const remainingSeconds = Math.floor(seconds % 60)
 
-  return ${minutes}:
+  return `${minutes}:${String(remainingSeconds).padStart(2, '0')}`
 }
